@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour
     [Header("References")]
     [SerializeField] protected GameObject projectilePrefab;
     [SerializeField] protected Transform projectileSpawnPoint;
+    [SerializeField] protected LayerMask whatIsEnemy;
 
     [Header("Misc")]
     [SerializeField] protected bool attackRangeInEditor = true;
@@ -28,11 +29,11 @@ public class Tower : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
 
-        Collider2D[] objectsFound = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        Collider2D[] objectsFound = Physics2D.OverlapCircleAll(transform.position, attackRange, whatIsEnemy);
 
         List<GameObject> EnemiesInRange = new List<GameObject>();
 
-        if (objectsFound.Length <= 0) return;
+        if (objectsFound.Length <= 0) return; //if no enemy is in range don't reset the timer yet
 
         if (attackTimer >= attackCooldown)
         {
@@ -44,15 +45,18 @@ public class Tower : MonoBehaviour
                 }
             }
 
-            int randomIndex = Random.Range(0, EnemiesInRange.Count);
+            if (EnemiesInRange.Count > 0)
+            {
+                int randomIndex = Random.Range(0, EnemiesInRange.Count);
 
-            GameObject TargetSelected = EnemiesInRange[randomIndex];
+                GameObject TargetSelected = EnemiesInRange[randomIndex];
 
-            Debug.Log(TargetSelected.name + " enemy targeted");
+                Debug.Log(TargetSelected.name + " enemy targeted");
 
-            GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+                GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
-            newProjectile.GetComponent<Projectile>().SpawnProjectileData(TargetSelected, projectileDamage, projectileSpeed);
+                newProjectile.GetComponent<Projectile>().SpawnProjectileData(TargetSelected, projectileDamage, projectileSpeed);
+            }
 
             attackTimer = 0;    
         }
