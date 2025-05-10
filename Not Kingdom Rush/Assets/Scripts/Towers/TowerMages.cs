@@ -1,8 +1,6 @@
-using NUnit.Framework;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerArcher : Tower
+public class TowerMages : Tower
 {
     protected override void Update()
     {
