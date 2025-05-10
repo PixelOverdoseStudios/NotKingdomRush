@@ -1,0 +1,46 @@
+# Enforce LF line endings for all text files
+* text=auto eol=lf
+
+# Unity C# scripts
+*.cs     text diff=csharp
+
+# Shader files
+*.shader text
+*.cginc  text
+*.hlsl   text
+*.glsl   text
+
+# Unity meta files
+*.meta   text
+
+# Unity scenes and prefabs (YAML-based)
+*.unity  text
+*.prefab text
+*.asset  text
+
+# JSON and XML
+*.json   text
+*.xml    text
+
+# Text-based files
+*.txt    text
+*.md     text
+*.csv    text
+
+# Binary files - don't touch line endings
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.mp3    binary
+*.ogg    binary
+*.wav    binary
+*.fbx    binary
+*.mp4    binary
+*.anim   binary
+*.controller binary
+
+# Ignore line endings for fonts and binaries
+*.ttf    binary
+*.otf    binary
+*.dll    binary
+*.exe    binary

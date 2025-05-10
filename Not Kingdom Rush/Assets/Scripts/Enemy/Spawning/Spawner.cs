@@ -14,7 +14,9 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         pathGenerator = FindFirstObjectByType<PathManager>();
-        path = pathGenerator.GetOrderedPath();
+
+        
+        ObjectPool.Instance.RegisterPrefab("Enemy", enemyPrefab);
 
         StartCoroutine(SpawnWave());
     }
@@ -23,8 +25,10 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < enemiesPerWave; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab);
-            enemy.GetComponent<Enemy>().SetPath(path);
+            GameObject enemy = ObjectPool.Instance.SpawnFromPool("Enemy", path[0], Quaternion.identity);
+            if (enemy != null)
+                enemy.GetComponent<Enemy>().SetPath(path);
+
             yield return new WaitForSeconds(spawnInterval);
         }
     }
