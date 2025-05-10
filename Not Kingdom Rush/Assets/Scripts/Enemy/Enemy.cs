@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     private List<Vector3> path;
     private int pathIndex = 0;
-    public float health = 100f;
+    public int health = 100;
     public float speed = 2f;
     public string poolTag;
 
@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(int amount)
     {
         health -= amount;
 
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void ResetEnemy()
     {
-        health = 100f;
+        health = 100;
         pathIndex = 0;
     }
 

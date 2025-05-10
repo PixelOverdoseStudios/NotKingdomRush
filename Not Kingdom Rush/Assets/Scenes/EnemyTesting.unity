@@ -8025,6 +8025,7 @@ MonoBehaviour:
   startTiles:
   - {x: -11, y: 9, z: 0}
   - {x: 10, y: 9, z: 0}
+  - {x: 17, y: -2, z: 0}
 --- !u!4 &2007339029
 Transform:
   m_ObjectHideFlags: 0
