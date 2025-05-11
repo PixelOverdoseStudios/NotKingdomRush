@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class MouseTracker : MonoBehaviour
 {
+    static MouseTracker instance;
+
     private Camera mainCamera;
     private Vector3 mousePosition;
     public GameObject towerHovered;
@@ -14,6 +16,15 @@ public class MouseTracker : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         mainCamera = Camera.main;
     }
 
@@ -86,11 +97,12 @@ public class MouseTracker : MonoBehaviour
         }
     }
 
+
     private bool HoverOverTower(RaycastHit2D _hit)
     {
         if(_hit.collider != null)
         {
-            if (_hit.collider.gameObject.CompareTag("Tower")) return true;
+            if (_hit.collider.gameObject.CompareTag("Interactable")) return true;
             else return false;
         }
         else return false;
