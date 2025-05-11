@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class BuildingPlot : MonoBehaviour, ITowerInteractable
+public class BuildingPlot : MonoBehaviour, IObjectInteractable
 {
-    [SerializeField] private float sizeToAdd = 0.2f;
-    [SerializeField] private float growSpeed;
+    [Header("UI")]
     [SerializeField] private GameObject sprite;
     [SerializeField] private GameObject UICanvas;
-    [SerializeField] private GameObject ArcherTower;
+
+    [Header("Misc")]
+    [SerializeField] private float sizeToAdd = 0.2f;
+    [SerializeField] private float growSpeed;
     public bool isBeingHovered;
     private Vector3 growSize;
     private Vector3 spriteStartSize;
@@ -53,19 +55,19 @@ public class BuildingPlot : MonoBehaviour, ITowerInteractable
         Debug.Log("Change to default");
     }
 
-    public void TowerClickedOn()
+    public void ObjectClickedOn()
     {
         UICanvas.SetActive(true);
     }
 
-    public void TowerClickedOff()
+    public void ObjectClickedOff()
     {
         UICanvas.SetActive(false);
     }
 
-    public void BuildArcherTower()
+    public void BuildTower(GameObject _towerToBuild)
     {
-        Instantiate(ArcherTower, transform.position, Quaternion.identity);
+        Instantiate(_towerToBuild, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

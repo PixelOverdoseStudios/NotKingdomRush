@@ -33,20 +33,20 @@ public class MouseTracker : MonoBehaviour
                 if (towerHovered == null)
                 {
                     towerHovered = hit.collider.gameObject;
-                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOn();
+                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOn();
                 }
                 else if (towerHovered != null)
                 {
-                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOff();
+                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
                     towerHovered = hit.collider.gameObject;
-                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOn();
+                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOn();
                 }
             }
             else if(!HoverOverTower(hit))
             {
                 if(towerHovered != null)
                 {
-                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOff();
+                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
                     towerHovered = null;
                 }
             }
