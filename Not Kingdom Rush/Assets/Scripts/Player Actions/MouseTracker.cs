@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class MouseTracker : MonoBehaviour
@@ -18,14 +19,32 @@ public class MouseTracker : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-        //Determines if you are hovering over a tower (use for highlighting)
-        if (HoverOverTower(hit))
-            Debug.Log(hit.collider.gameObject.name + " is being hovered over");
-
-        //Determines if you are clicking on a tower that is being hovered
-        if (Input.GetMouseButtonDown(0) && HoverOverTower(hit))
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(hit.collider.gameObject.name + " has been clicked on");
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+
+            if(HoverOverTower(hit))
+            {
+                if (towerHovered == null)
+                {
+                    towerHovered = hit.collider.gameObject;
+                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOn();
+                }
+                else if (towerHovered != null)
+                {
+                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOff();
+                    towerHovered = hit.collider.gameObject;
+                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOn();
+                }
+            }
+            else if(!HoverOverTower(hit))
+            {
+                if(towerHovered != null)
+                {
+                    towerHovered.GetComponent<ITowerInteractable>().TowerClickedOff();
+                    towerHovered = null;
+                }
+            }
         }
     }
 
