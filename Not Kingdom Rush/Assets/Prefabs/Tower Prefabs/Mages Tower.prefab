@@ -107,6 +107,9 @@ MonoBehaviour:
   attackCooldown: 1
   projectilePrefab: {fileID: 1878180437719883541, guid: dd5e6edc0b4d5da45b142c1fa7971f88, type: 3}
   projectileSpawnPoint: {fileID: 21328369007287106}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 64
   attackRangeInEditor: 0
 --- !u!1 &8760139479442417819
 GameObject:

@@ -18,6 +18,20 @@ public class MouseTracker : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
+        //if(hit.collider != null)
+        //{
+        //    if(hit.collider.gameObject.CompareTag("Tower"))
+        //    {
+        //        towerHovered = hit.collider.gameObject;
+        //        towerHovered.GetComponent<ITowerInteractable>().MouseEnterHoverTower();
+        //    }
+        //}
+        //else if (towerHovered != null)
+        //{
+        //    towerHovered.GetComponent<ITowerInteractable>().MouseExitHoverTower();
+        //    towerHovered = null;
+        //}
+
         //Determines if you are hovering over a tower (use for highlighting)
         if (HoverOverTower(hit))
             Debug.Log(hit.collider.gameObject.name + " is being hovered over");
@@ -25,6 +39,11 @@ public class MouseTracker : MonoBehaviour
         //Determines if you are clicking on a tower that is being hovered
         if (Input.GetMouseButtonDown(0) && HoverOverTower(hit))
         {
+            if(towerHovered == null)
+            {
+                towerHovered = hit.collider.gameObject;
+                towerHovered.GetComponent<ITowerInteractable>().TowerClickedOn();
+            }
             Debug.Log(hit.collider.gameObject.name + " has been clicked on");
         }
     }
