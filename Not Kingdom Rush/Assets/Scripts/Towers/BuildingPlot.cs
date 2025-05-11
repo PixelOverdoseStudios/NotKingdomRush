@@ -6,6 +6,7 @@ public class BuildingPlot : MonoBehaviour, ITowerInteractable
     [SerializeField] private float growSpeed;
     [SerializeField] private GameObject sprite;
     [SerializeField] private GameObject UICanvas;
+    [SerializeField] private GameObject ArcherTower;
     public bool isBeingHovered;
     private Vector3 growSize;
     private Vector3 spriteStartSize;
@@ -54,11 +55,17 @@ public class BuildingPlot : MonoBehaviour, ITowerInteractable
 
     public void TowerClickedOn()
     {
-        
+        UICanvas.SetActive(true);
     }
 
     public void TowerClickedOff()
     {
-        
+        UICanvas.SetActive(false);
+    }
+
+    public void BuildArcherTower()
+    {
+        Instantiate(ArcherTower, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }

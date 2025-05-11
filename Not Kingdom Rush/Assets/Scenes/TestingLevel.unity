@@ -8368,7 +8368,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1395036571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1685840150}
+        m_TargetAssemblyTypeName: BuildingPlot, Assembly-CSharp
+        m_MethodName: BuildArcherTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1395036571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8842,6 +8854,7 @@ MonoBehaviour:
   growSpeed: 10
   sprite: {fileID: 197548639}
   UICanvas: {fileID: 577888062}
+  ArcherTower: {fileID: 8441479321878790401, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
   isBeingHovered: 0
 --- !u!58 &1685840151
 CircleCollider2D:
@@ -9232,71 +9245,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7a48bdc250c85e4c915a15696b7fb19, type: 3}
---- !u!1001 &7509789106895041247
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 206310581189388719, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 995237635100694903, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_Name
-      value: Archer Tower
-      objectReference: {fileID: 0}
-    - target: {fileID: 995237635100694903, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7083701495376248525, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
-      propertyPath: attackRangeInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4861713b9a3b7b24289f993630da734d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9304,7 +9252,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 506680223}
-  - {fileID: 7509789106895041247}
   - {fileID: 1634123723}
   - {fileID: 963836354}
   - {fileID: 1676446197}
