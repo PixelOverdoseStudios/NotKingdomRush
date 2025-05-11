@@ -48,9 +48,17 @@ public class MouseTracker : MonoBehaviour
                 }
                 else if (towerHovered != null)
                 {
-                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
-                    towerHovered = hit.collider.gameObject;
-                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOn();
+                    if(hit.collider.gameObject == towerHovered)
+                    {
+                        towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
+                        towerHovered = null;
+                    }
+                    else
+                    {
+                        towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
+                        towerHovered = hit.collider.gameObject;
+                        towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOn();
+                    }
                 }
             }
             else if(!HoverOverTower(hit))

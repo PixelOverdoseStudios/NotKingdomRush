@@ -1,9 +1,12 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TowerButton : MonoBehaviour
+public class TowerButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private int costToClick;
+    [SerializeField] private TextMeshProUGUI costText;
 
     private Button button;
 
@@ -18,5 +21,16 @@ public class TowerButton : MonoBehaviour
             button.interactable = false;
         else
             button.interactable = true;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        costText.gameObject.SetActive(true);
+        costText.text = "$" + costToClick.ToString();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        costText.gameObject.SetActive(false);
     }
 }

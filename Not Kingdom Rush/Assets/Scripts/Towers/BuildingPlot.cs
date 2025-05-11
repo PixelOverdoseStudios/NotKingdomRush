@@ -32,30 +32,6 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
         }
     }
 
-    public void MouseClickedTower()
-    {
-        if(!UICanvas.activeInHierarchy)
-        {
-            UICanvas.SetActive(true);
-        }
-        else
-        {
-            UICanvas.SetActive(false);
-        }
-    }
-
-    public void MouseEnterHoverTower()
-    {
-        isBeingHovered = true;
-        Debug.Log("Change to outline");
-    }
-
-    public void MouseExitHoverTower()
-    {
-        isBeingHovered = false;
-        Debug.Log("Change to default");
-    }
-
     public void ObjectClickedOn()
     {
         UICanvas.SetActive(true);
