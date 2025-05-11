@@ -5,6 +5,8 @@ public class Health : MonoBehaviour, IDamageable
 {
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private bool destroyOnDeath = true;
+    [SerializeField] private float deathDelay = 1f;
 
     private float currentHealth;
     private bool isDead = false;

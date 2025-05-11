@@ -40,8 +40,7 @@ public class MouseTracker : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject()) return;
 
             if(HoverOverTower(hit))
-            {   
-                selectedHero = false;
+            {
                 if (towerHovered == null)
                 {
                     towerHovered = hit.collider.gameObject;

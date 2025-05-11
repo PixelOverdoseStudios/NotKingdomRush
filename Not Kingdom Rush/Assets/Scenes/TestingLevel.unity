@@ -7863,11 +7863,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 842843286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &794204934 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6309571251563155870, guid: 395488d6e8ddf554ca4fe2bcbacd0fab, type: 3}
-  m_PrefabInstance: {fileID: 1975379589}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &842843283
 GameObject:
   m_ObjectHideFlags: 0
@@ -8125,6 +8120,7 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1355713133
 GameObject:
   m_ObjectHideFlags: 0
@@ -8288,6 +8284,8 @@ Transform:
   m_PrefabInstance: {fileID: 1523541249}
   m_PrefabAsset: {fileID: 0}
 >>>>>>> 88800459845196cef2a968a9ef81a33d2ddd11f6
+=======
+>>>>>>> parent of 8880045 (Fix tower and hero selection)
 --- !u!1 &1634123721
 GameObject:
   m_ObjectHideFlags: 0
@@ -8656,6 +8654,7 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1907468767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3650693802607084850, guid: f5fe2b7908f330d46a28fb646b727dd4, type: 3}
@@ -8737,6 +8736,8 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 395488d6e8ddf554ca4fe2bcbacd0fab, type: 3}
 >>>>>>> 88800459845196cef2a968a9ef81a33d2ddd11f6
+=======
+>>>>>>> parent of 8880045 (Fix tower and hero selection)
 --- !u!1001 &2106022366755722427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8821,7 +8822,10 @@ SceneRoots:
   - {fileID: 2106022366755722427}
   - {fileID: 471475274}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 1355713135}
 =======
   - {fileID: 1523541249}
 >>>>>>> 88800459845196cef2a968a9ef81a33d2ddd11f6
+=======
+>>>>>>> parent of 8880045 (Fix tower and hero selection)

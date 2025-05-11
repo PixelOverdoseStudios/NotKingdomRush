@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
+public class Hero : MonoBehaviour, IDamageable
 {
     public enum HeroState { Idle, Moving, Attacking, Die }
     
@@ -50,13 +50,6 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
         health.OnDeath += ChangeToDiedState;
     }
     
-    public void ObjectClickedOn(){
-        
-    }
-    public void ObjectClickedOff(){
-
-    }
-
     private void UpdateStateMachine()
     {
         switch (currentState)
