@@ -101,5 +101,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactEffect: {fileID: 0}
-  fallSpeed: 25
+  fallSpeed: 40
   rotationSpeed: 180

@@ -20,13 +20,19 @@ public class HealthBar : MonoBehaviour
     }
 
     void OnEnable()
-    {
+    {   
+        ResetHealthBar();
+
+        health.OnHealthReset += ResetHealthBar;
+        health.OnFullHPRegen += HideHealthBar;
         health.OnHealthChanged += UpdateHealthBar;
         health.OnDeath += HideHealthBar;
     }
 
     void OnDisable()
-    {
+    {   
+        health.OnHealthReset -= ResetHealthBar;
+        health.OnFullHPRegen -= HideHealthBar;
         health.OnHealthChanged -= UpdateHealthBar;
         health.OnDeath -= HideHealthBar;
     }
@@ -38,8 +44,8 @@ public class HealthBar : MonoBehaviour
         fillTransform.localScale = new Vector3(initialScale.x * healthPercent, initialScale.y, initialScale.z);
     }
 
-    //For enemy when they did
-    private void ResetHealthBar()
+    //For enemy when they died
+    public void ResetHealthBar()
     {
         healthGrouping.SetActive(false); // Disable on death
 

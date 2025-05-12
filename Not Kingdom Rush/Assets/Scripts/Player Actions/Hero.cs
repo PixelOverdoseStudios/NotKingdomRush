@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
@@ -20,6 +21,7 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
     public float idleTimeBeforeRegen = 3f; // Time in seconds before regen starts
     public float regenRate = 1.8f;          // How often regen occurs (in seconds)
     public int regenAmount = 10;            // How much health to restore each regen
+    public float respawnTime = 5f;         // Time in seconds before respawning
 
     private float idleTimer = 0f;
     private float regenTimer = 0f;
@@ -29,10 +31,12 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
     private float lastAttackTime;
     private Vector2 targetPosition;
     private Animator animator;
+    SpriteRenderer spriteRenderer;
     
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     private void Update()
@@ -117,10 +121,7 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
         Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
         
         // Flip sprite based on direction
-        if (direction.x != 0)
-        {
-            transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
-        }
+        spriteRenderer.flipX = direction.x < 0;
         
         // Move towards target position
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -159,14 +160,14 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
             Vector2 direction = currentTarget.position - transform.position;
             if (direction.x != 0)
             {
-                transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
+                spriteRenderer.flipX = direction.x < 0;
             }
             
             // Attack if cooldown is over
             if (Time.time - lastAttackTime >= attackRate)
             {
                 SetAnimationState("IsAttacking");
-                Attack();
+                
                 lastAttackTime = Time.time;
             } 
         }
@@ -176,7 +177,8 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
     public void MoveToPosition(Vector2 destination)
     {
         // Clear current target when moving to new position
-        currentTarget = null;
+        ResetEnemyState();
+        
         
         // Set target position
         targetPosition = destination;
@@ -194,8 +196,35 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
     }
 
     private void Die()
-    {
+    {   
+
         SetAnimationState("IsDead");
+
+    }
+
+    //For animator to be called
+    public void OnDied()
+    {
+        ResetEnemyState();
+
+        StartCoroutine(RespawnAfterDelay());
+    }
+
+    private IEnumerator RespawnAfterDelay()
+    {
+        // Disable the game object
+        spriteRenderer.enabled = false;
+        
+        // Wait for the specified time
+        yield return new WaitForSeconds(respawnTime);
+        
+        // Enable the game object back
+        spriteRenderer.enabled = true;
+        health.ResetHealth();
+
+        currentState = HeroState.Idle;   
+        // You might want to reset some enemy state here
+        // ResetEnemyState();
     }
     
     private void FindNearestEnemy()
@@ -222,7 +251,7 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
             
             currentTarget = closest;
 
-            currentTarget.GetComponent<Enemy>().ChangeToAttackState(health);
+            currentTarget.GetComponent<Enemy>().ChangeToAttackState(health, this.transform);
             hasEnemy = true;
         }
     }
@@ -243,12 +272,13 @@ public class Hero : MonoBehaviour, IDamageable, IObjectInteractable
 
     //Called in mouse tracker everytime hero moves reset target
     public void ResetEnemyState()
-    {
+    {   
         if (currentTarget != null)
         {
             currentTarget.GetComponent<Enemy>().ChangeToMoveState();
 
             hasEnemy = false;
+            currentTarget = null;
         }
     }
     

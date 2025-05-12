@@ -67,7 +67,7 @@ public class MouseTracker : MonoBehaviour
                 if(hero != null)
                 {
                     hero.MoveToPosition(mousePosition);
-                    hero.ResetEnemyState();
+                    //hero.ResetEnemyState();
                     
                     hero = null;
                     selectedHero = false;

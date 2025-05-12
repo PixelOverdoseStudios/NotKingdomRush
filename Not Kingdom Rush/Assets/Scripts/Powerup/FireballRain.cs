@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FireballRain : MonoBehaviour
 {
@@ -10,15 +11,19 @@ public class FireballRain : MonoBehaviour
     public float splashRadius = 2f;
     public float delayBetweenFireballs = 0.2f;
     public float fallHeight = 10f;
+    public float cooldownDuration = 20f;
 
     [Header("UI")]
     public GameObject targetCursorPrefab;
+    public Slider cooldownSlider;
 
     [Header("Targeting")]
     public LayerMask enemyLayer;
     public float castRadius = 5f;
     public float castWidthMultiplyer = 1.5f;
 
+    private bool isOnCooldown = false;
+    private float cooldownTimer; // New: Tracks remaining cooldown
     private GameObject currentCursor;
     private bool isTargeting = false;
     private Camera mainCamera;
@@ -29,10 +34,24 @@ public class FireballRain : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
+        cooldownSlider.gameObject.SetActive(false); // Hide slider initially
+        cooldownSlider.maxValue = cooldownDuration;
     }
 
     private void Update()
     {   
+        if (isOnCooldown)
+        {
+            cooldownTimer -= Time.deltaTime;
+            cooldownSlider.value = cooldownTimer;
+
+            if (cooldownTimer <= 0)
+            {
+                isOnCooldown = false;
+                cooldownSlider.gameObject.SetActive(false);
+            }
+        }
+
         if (!isTargeting) return;
 
         Vector2 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -40,7 +59,8 @@ public class FireballRain : MonoBehaviour
         currentCursor.transform.position = mouseWorldPos;
 
         if (Input.GetMouseButtonDown(0  )) // Right mouse click
-        {
+        {   
+            StartCooldown();
             CastFireballRain(mouseWorldPos);
             EndTargeting();
         }
@@ -54,10 +74,18 @@ public class FireballRain : MonoBehaviour
     // Call this from your UI button
     public void StartTargeting()
     {
-        if (isTargeting) return;
+        if (isTargeting || isOnCooldown) return;
         
         isTargeting = true;
         currentCursor = Instantiate(targetCursorPrefab);
+    }
+
+    private void StartCooldown()
+    {
+        isOnCooldown = true;
+        cooldownTimer = cooldownDuration;
+        cooldownSlider.gameObject.SetActive(true);
+        cooldownSlider.value = cooldownDuration;
     }
 
     private void EndTargeting()
@@ -71,6 +99,7 @@ public class FireballRain : MonoBehaviour
         }
     }
 
+    
 
     public void CastFireballRain(Vector2 centerPosition)
     {

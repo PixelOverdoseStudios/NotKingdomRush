@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2928152840072957207}
   - component: {fileID: -4284241904915176176}
   - component: {fileID: 5016835410291447927}
+  - component: {fileID: 2989483047134620597}
   m_Layer: 6
   m_Name: Temp Enemy
   m_TagString: Enemy
@@ -61,7 +62,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: ccb555be04118fe4889cf58c9957d98d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 16458501
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 3799508404887519019, guid: 4ee0a341777880448bff8ac686bd31d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -174,7 +175,7 @@ MonoBehaviour:
   health: {fileID: -4284241904915176176}
   attackRange: 2
   attackRate: 1
-  attackDamage: 10
+  attackDamage: 5
 --- !u!114 &-4284241904915176176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,8 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  destroyOnDeath: 1
-  deathDelay: 1
 --- !u!95 &5016835410291447927
 Animator:
   serializedVersion: 7
@@ -200,7 +199,7 @@ Animator:
   m_GameObject: {fileID: 8277190437129109947}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 21237cbb774d10d4d8b27b8aec102f8d, type: 2}
+  m_Controller: {fileID: 9100000, guid: cf3cce79396f87e4ab5b46013cc42b39, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -212,6 +211,54 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2989483047134620597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8277190437129109947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ece6f60faee1f448ae1c8dc216f47fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.19492358
+      value: 0.9965708
+      inSlope: 0.004257401
+      outSlope: 0.004257401
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5032959
+      value: 0.008533478
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  sprite: {fileID: 0}
 --- !u!1001 &150499935759601078
 PrefabInstance:
   m_ObjectHideFlags: 0
