@@ -2,30 +2,41 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, IObjectInteractable
 {
+    [SerializeField] protected TowerLevelStats[] towerLevelStats;
+
     [Header("Tower Stats")]
-    [SerializeField] protected float attackRange;
+    [SerializeField] protected int towerLevel;
     [SerializeField] protected float projectileSpeed;
-    [SerializeField] protected int projectileDamage;
-    [SerializeField] protected float attackCooldown;
+    protected float attackRange;
+    protected int projectileDamage;
+    protected float attackCooldown;
     protected float attackTimer;
 
     [Header("References")]
     [SerializeField] protected GameObject projectilePrefab;
     [SerializeField] protected Transform projectileSpawnPoint;
+    [SerializeField] protected GameObject inGameAttackRange;
+    [SerializeField] protected GameObject UICanvas;
     [SerializeField] protected LayerMask whatIsEnemy;
 
     [Header("Misc")]
     [SerializeField] protected bool attackRangeInEditor = true;
 
-    protected virtual void Update()
+    protected virtual void Start()
     {
-        AttackLogic();
+        UpdateTowerStats();
     }
 
-    protected virtual void AttackLogic()
+    protected virtual void Update()
+    {
+        AttackTimer();
+    }
+
+    protected virtual void AttackTimer()
     {
         attackTimer += Time.deltaTime;
 
@@ -45,27 +56,80 @@ public class Tower : MonoBehaviour
                 }
             }
 
-            if (EnemiesInRange.Count > 0)
-            {
-                int randomIndex = Random.Range(0, EnemiesInRange.Count);
-
-                GameObject TargetSelected = EnemiesInRange[randomIndex];
-
-                Debug.Log(TargetSelected.name + " enemy targeted");
-
-                GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
-
-                newProjectile.GetComponent<Projectile>().SpawnProjectileData(TargetSelected, projectileDamage, projectileSpeed);
-            }
-
-            attackTimer = 0;    
+            AttackLogic(EnemiesInRange);  
         }
     }
+
+    protected virtual void AttackLogic(List<GameObject> _enemiesInRange)
+    {
+        if (_enemiesInRange.Count > 0)
+        {
+            int randomIndex = Random.Range(0, _enemiesInRange.Count);
+
+            GameObject TargetSelected = _enemiesInRange[randomIndex];
+
+            Debug.Log(TargetSelected.name + " enemy targeted");
+
+            GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+
+            newProjectile.GetComponent<Projectile>().SpawnProjectileData(TargetSelected, projectileDamage, projectileSpeed);
+        }
+
+        attackTimer = 0;
+    }
+
+    public void ObjectClickedOn()
+    {
+        inGameAttackRange.SetActive(true);
+        //inGameAttackRange.GetComponent<InGameAttackRange>().UpdateScale(attackRange);
+        UICanvas.SetActive(true);
+    }
+
+    public void ObjectClickedOff()
+    {
+        inGameAttackRange.SetActive(false);
+        UICanvas.GetComponentInChildren<Animator>().SetTrigger("despawnButtons");
+    }
+
+    public void ObjectIsBeingHovered() { }
 
     void OnDrawGizmos()
     {
         if (!attackRangeInEditor) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, towerLevelStats[towerLevel].attackRange);
     }
+
+    public float GetAttackRange() => attackRange;
+
+    private void UpdateTowerStats()
+    {
+        attackRange = towerLevelStats[towerLevel].attackRange;
+        projectileDamage = towerLevelStats[towerLevel].projectileDamage;
+        attackCooldown = towerLevelStats[towerLevel].attackCooldown;
+    }
+
+    public void UpgradeTower()
+    {
+        if(towerLevel < 2)
+        {
+            towerLevel++;
+            UpdateTowerStats();
+            inGameAttackRange.GetComponent<InGameAttackRange>().UpdateScale();
+        }
+        else
+        {
+            Debug.Log("ERROR: This tower is maxed out.");
+        }
+    }
+}
+
+
+[System.Serializable]
+public class TowerLevelStats
+{
+    [Header("Stats")]
+    public float attackRange;
+    public int projectileDamage;
+    public float attackCooldown;
 }

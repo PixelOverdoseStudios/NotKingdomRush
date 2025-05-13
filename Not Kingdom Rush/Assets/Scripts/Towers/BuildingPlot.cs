@@ -10,6 +10,7 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
     [Header("Misc")]
     [SerializeField] private float sizeToAdd = 0.2f;
     [SerializeField] private float growSpeed;
+    [SerializeField] private Animator buttonCollectionAnimator;
     public bool isBeingHovered;
     private Vector3 growSize;
     private Vector3 spriteStartSize;
@@ -39,7 +40,7 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
 
     public void ObjectClickedOff()
     {
-        UICanvas.SetActive(false);
+        buttonCollectionAnimator.SetTrigger("despawnButtons");
     }
 
     public void BuildTower(GameObject _towerToBuild)
@@ -47,4 +48,6 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
         Instantiate(_towerToBuild, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
+
+    public void ObjectIsBeingHovered() { }
 }

@@ -17,6 +17,16 @@ public class GameManager : MonoBehaviour
     }
 
     public int GetGold() => gold;
-    public void AddGold(int goldToAdd) => gold += goldToAdd;
-    public void SubtractGold(int goldToTake) => gold -= goldToTake;
+
+    public void AddGold(int goldToAdd)
+    {
+        gold += goldToAdd;
+        MainUICanvas.instance.UpdateGoldUI();
+    }
+
+    public void SubtractGold(int goldToTake)
+    {
+        gold -= goldToTake;
+        MainUICanvas.instance.UpdateGoldUI();
+    }
 }
