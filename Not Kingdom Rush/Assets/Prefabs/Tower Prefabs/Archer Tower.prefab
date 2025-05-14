@@ -201,8 +201,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 619835520980184324}
-        m_TargetAssemblyTypeName: Tower, Assembly-CSharp
+      - m_Target: {fileID: 5852059369945417996}
+        m_TargetAssemblyTypeName: TowerButton, Assembly-CSharp
         m_MethodName: UpgradeTower
         m_Mode: 1
         m_Arguments:
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf71d7b84bd683b4a935ed73e487c648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 0
+  buttonType: 1
   goldValue: 100
   costText: {fileID: 4144594388931455265}
 --- !u!1 &560263938278750841
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf71d7b84bd683b4a935ed73e487c648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 1
+  buttonType: 2
   goldValue: 30
   costText: {fileID: 294486346434784150}
 --- !u!1 &1832852299734652247
@@ -798,8 +798,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 3, y: 0.7405}
+  m_AnchoredPosition: {x: 0, y: 0.736}
+  m_SizeDelta: {x: 3, y: 0.4845}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1920623317346091958
 CanvasRenderer:
@@ -856,8 +856,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.7
-  m_fontSizeBase: 0.7
+  m_fontSize: 0.4
+  m_fontSizeBase: 0.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1021,8 +1021,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 3, y: 0.7405}
+  m_AnchoredPosition: {x: 0, y: 0.736}
+  m_SizeDelta: {x: 3, y: 0.4845}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3647627073613212551
 CanvasRenderer:
@@ -1079,8 +1079,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.7
-  m_fontSizeBase: 0.7
+  m_fontSize: 0.4
+  m_fontSizeBase: 0.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1297,6 +1297,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  rangeOffset: {x: 0, y: 0, z: 0}
   attackRangeInEditor: 1
   archerPrefab: {fileID: 1832852299734652247}
   archerAnimator: {fileID: 5259721012462244693}

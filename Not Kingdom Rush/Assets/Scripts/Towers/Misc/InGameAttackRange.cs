@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class InGameAttackRange : MonoBehaviour
 {
@@ -20,7 +19,8 @@ public class InGameAttackRange : MonoBehaviour
 
     private void Start()
     {
-        startingSize = transform.localScale;   
+        startingSize = transform.localScale;
+        transform.position += tower.GetRangeOffset();
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class InGameAttackRange : MonoBehaviour
     public void UpdateScale()
     {
         growthTimer += Time.deltaTime;
-        float percentageComplete = growthTimer / 0.5f;
+        float percentageComplete = growthTimer / .25f;
 
         transform.localScale = Vector3.Lerp(startingSize, new Vector3(tower.GetAttackRange() * 2, tower.GetAttackRange() * 2, 1f), percentageComplete);
     }

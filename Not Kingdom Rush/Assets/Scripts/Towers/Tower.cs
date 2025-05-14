@@ -24,11 +24,13 @@ public class Tower : MonoBehaviour, IObjectInteractable
     [SerializeField] protected LayerMask whatIsEnemy;
 
     [Header("Misc")]
+    [SerializeField] protected Vector3 rangeOffset;
     [SerializeField] protected bool attackRangeInEditor = true;
 
     protected virtual void Start()
     {
         UpdateTowerStats();
+        attackTimer = attackCooldown - 0.5f;
     }
 
     protected virtual void Update()
@@ -40,7 +42,7 @@ public class Tower : MonoBehaviour, IObjectInteractable
     {
         attackTimer += Time.deltaTime;
 
-        Collider2D[] objectsFound = Physics2D.OverlapCircleAll(transform.position, attackRange, whatIsEnemy);
+        Collider2D[] objectsFound = Physics2D.OverlapCircleAll(transform.position + rangeOffset, attackRange, whatIsEnemy);
 
         List<GameObject> EnemiesInRange = new List<GameObject>();
 
@@ -97,7 +99,7 @@ public class Tower : MonoBehaviour, IObjectInteractable
     {
         if (!attackRangeInEditor) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, towerLevelStats[towerLevel].attackRange);
+        Gizmos.DrawWireSphere(transform.position + rangeOffset, towerLevelStats[towerLevel].attackRange);
     }
 
     public float GetAttackRange() => attackRange;
@@ -122,6 +124,10 @@ public class Tower : MonoBehaviour, IObjectInteractable
             Debug.Log("ERROR: This tower is maxed out.");
         }
     }
+
+    public int GetTowerLevel() => towerLevel;
+
+    public Vector3 GetRangeOffset() => rangeOffset;
 }
 
 
