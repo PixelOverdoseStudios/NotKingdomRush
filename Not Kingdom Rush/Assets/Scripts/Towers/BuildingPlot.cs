@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingPlot : MonoBehaviour, IObjectInteractable
 {
@@ -9,6 +10,7 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
     [Header("Misc")]
     [SerializeField] private float sizeToAdd = 0.2f;
     [SerializeField] private float growSpeed;
+    [SerializeField] private Animator buttonCollectionAnimator;
     public bool isBeingHovered;
     private Vector3 growSize;
     private Vector3 spriteStartSize;
@@ -31,30 +33,6 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
         }
     }
 
-    public void MouseClickedTower()
-    {
-        if(!UICanvas.activeInHierarchy)
-        {
-            UICanvas.SetActive(true);
-        }
-        else
-        {
-            UICanvas.SetActive(false);
-        }
-    }
-
-    public void MouseEnterHoverTower()
-    {
-        isBeingHovered = true;
-        Debug.Log("Change to outline");
-    }
-
-    public void MouseExitHoverTower()
-    {
-        isBeingHovered = false;
-        Debug.Log("Change to default");
-    }
-
     public void ObjectClickedOn()
     {
         UICanvas.SetActive(true);
@@ -62,7 +40,7 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
 
     public void ObjectClickedOff()
     {
-        UICanvas.SetActive(false);
+        buttonCollectionAnimator.SetTrigger("despawnButtons");
     }
 
     public void BuildTower(GameObject _towerToBuild)
@@ -70,4 +48,6 @@ public class BuildingPlot : MonoBehaviour, IObjectInteractable
         Instantiate(_towerToBuild, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
+
+    public void ObjectIsBeingHovered() { }
 }

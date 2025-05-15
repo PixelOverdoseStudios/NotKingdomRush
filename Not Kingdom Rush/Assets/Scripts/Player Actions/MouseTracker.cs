@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class MouseTracker : MonoBehaviour
 {
+    static MouseTracker instance;
+
     private Camera mainCamera;
     private Vector3 mousePosition;
     public GameObject towerHovered;
@@ -14,6 +16,15 @@ public class MouseTracker : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         mainCamera = Camera.main;
     }
 
@@ -29,8 +40,7 @@ public class MouseTracker : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject()) return;
 
             if(HoverOverTower(hit))
-            {   
-                selectedHero = false;
+            {
                 if (towerHovered == null)
                 {
                     towerHovered = hit.collider.gameObject;
@@ -38,9 +48,17 @@ public class MouseTracker : MonoBehaviour
                 }
                 else if (towerHovered != null)
                 {
-                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
-                    towerHovered = hit.collider.gameObject;
-                    towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOn();
+                    if(hit.collider.gameObject == towerHovered)
+                    {
+                        towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
+                        towerHovered = null;
+                    }
+                    else
+                    {
+                        towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOff();
+                        towerHovered = hit.collider.gameObject;
+                        towerHovered.GetComponent<IObjectInteractable>().ObjectClickedOn();
+                    }
                 }
             }
             else if(!HoverOverTower(hit))
@@ -87,11 +105,12 @@ public class MouseTracker : MonoBehaviour
         }
     }
 
+
     private bool HoverOverTower(RaycastHit2D _hit)
     {
         if(_hit.collider != null)
         {
-            if (_hit.collider.gameObject.CompareTag("Tower")) return true;
+            if (_hit.collider.gameObject.CompareTag("Interactable")) return true;
             else return false;
         }
         else return false;

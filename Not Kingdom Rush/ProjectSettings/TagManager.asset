@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Tower
   - Hero
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,12 @@ TagManager:
     locked: 0
   - name: VFX
     uniqueID: 747052963
+    locked: 0
+  - name: Projectiles
+    uniqueID: 106011415
+    locked: 0
+  - name: UI
+    uniqueID: 3751792677
     locked: 0
   m_RenderingLayers:
   - Default
