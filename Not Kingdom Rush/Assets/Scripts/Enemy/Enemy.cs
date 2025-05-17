@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2f;
     public float attackRate = 1f;
     public int attackDamage = 10;
+    public int goldValue = 1;
+    
 
     //assigned when attack mode (hero script pass reference to enemy script)
     private IDamageable damageable;
@@ -138,12 +140,12 @@ public class Enemy : MonoBehaviour
     void MoveOverCheckpoint()
     {
         ObjectPool.Instance.ReturnToPool(poolTag, gameObject);
-        LifeManager.Instance.LoseLife(1);
+        GameManager.instance.CastleTakeDamage(1);
     }
 
     void Die()
     {   
-        GameManager.instance.AddGold(1);
+        GameManager.instance.AddGold(goldValue);
 
         enemyCurrentState = EnemyStates.Died;
         SetAnimationState("IsDead");
