@@ -145,6 +145,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {   
+        //Set to default so wont be targetted no more
+        gameObject.layer = 0;
         GameManager.instance.AddGold(goldValue);
 
         enemyCurrentState = EnemyStates.Died;
@@ -165,6 +167,9 @@ public class Enemy : MonoBehaviour
 
     void OnEnable() 
     {   
+        //Set to enemy so could be targeted
+        gameObject.layer = 6;
+
         enemyCurrentState = EnemyStates.Run;
         health.OnDeath += Die;
 
