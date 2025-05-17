@@ -418,12 +418,12 @@ Transform:
   m_GameObject: {fileID: 1832852299734652247}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.017106056, y: 1.3961797, z: 0}
+  m_LocalPosition: {x: 0.017106056, y: 0.971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4633830684001555030}
-  m_Father: {fileID: 1793355643600368559}
+  m_Father: {fileID: 5316082985797239843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6721389257170044600
 SpriteRenderer:
@@ -466,8 +466,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1613578851
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: -3868812660829053132, guid: f4b097f7174c5654193ab8fefb7356bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -479,7 +479,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &5259721012462244693
 Animator:
   serializedVersion: 7
@@ -514,6 +514,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65222372d716e71438e4f8fb16b62d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2124605931438297031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5316082985797239843}
+  - component: {fileID: 950509737481135989}
+  m_Layer: 0
+  m_Name: Sprite Collection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5316082985797239843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124605931438297031}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3954802364057081182}
+  - {fileID: 1586408830995444135}
+  m_Father: {fileID: 1793355643600368559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &950509737481135989
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124605931438297031}
+  m_Enabled: 1
+  m_SortingLayerID: -1613578851
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &3410120464532330137
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,8 +784,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1449154885
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.40494838, g: 0.7848963, b: 0.9433962, a: 0.4}
@@ -930,7 +976,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1793355643600368559}
+  m_Father: {fileID: 5316082985797239843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7302772285962070601
 SpriteRenderer:
@@ -973,8 +1019,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1613578851
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8341e28ec11b6274ba9864ac34c303f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1222,7 +1268,7 @@ Transform:
   m_GameObject: {fileID: 7543230411232747001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6228938, y: -0.03617966, z: 0}
+  m_LocalPosition: {x: 0.913, y: 0.372, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1237,9 +1283,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1793355643600368559}
-  - component: {fileID: 619835520980184324}
   - component: {fileID: 2312561253591419580}
-  - component: {fileID: 750266534594024105}
+  - component: {fileID: 619835520980184324}
   m_Layer: 0
   m_Name: Archer Tower
   m_TagString: Interactable
@@ -1260,47 +1305,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3954802364057081182}
-  - {fileID: 1586408830995444135}
+  - {fileID: 5316082985797239843}
   - {fileID: 8049854622151819557}
   - {fileID: 6162168219748296307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &619835520980184324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8441479321878790401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e858cb462d36f4e964bfefcf1f193e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerLevelStats:
-  - attackRange: 2.5
-    projectileDamage: 2
-    attackCooldown: 1
-  - attackRange: 3.75
-    projectileDamage: 5
-    attackCooldown: 0.8
-  - attackRange: 5
-    projectileDamage: 8
-    attackCooldown: 0.6
-  towerLevel: 0
-  projectileSpeed: 10
-  projectilePrefab: {fileID: 72815915310830232, guid: 8f29d1c58361e4c40b310e8a476a423a, type: 3}
-  projectileSpawnPoint: {fileID: 4633830684001555030}
-  inGameAttackRange: {fileID: 4012575052490184803}
-  UICanvas: {fileID: 124661215982136937}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 64
-  rangeOffset: {x: 0, y: 0, z: 0}
-  attackRangeInEditor: 1
-  archerPrefab: {fileID: 1832852299734652247}
-  archerAnimator: {fileID: 5259721012462244693}
 --- !u!61 &2312561253591419580
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1347,15 +1356,41 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.6678038, y: 2.1840897}
   m_EdgeRadius: 0
---- !u!210 &750266534594024105
-SortingGroup:
+--- !u!114 &619835520980184324
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8441479321878790401}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_SortAtRoot: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e858cb462d36f4e964bfefcf1f193e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLevelStats:
+  - attackRange: 2.5
+    projectileDamage: 2
+    attackCooldown: 1
+    upgradeCost: 25
+  - attackRange: 3.75
+    projectileDamage: 5
+    attackCooldown: 0.8
+    upgradeCost: 50
+  - attackRange: 5
+    projectileDamage: 8
+    attackCooldown: 0.6
+    upgradeCost: 100
+  towerLevel: 0
+  projectileSpeed: 10
+  projectilePrefab: {fileID: 72815915310830232, guid: 8f29d1c58361e4c40b310e8a476a423a, type: 3}
+  projectileSpawnPoint: {fileID: 4633830684001555030}
+  inGameAttackRange: {fileID: 4012575052490184803}
+  UICanvas: {fileID: 124661215982136937}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 64
+  rangeOffset: {x: 0, y: 0, z: 0}
+  attackRangeInEditor: 1
+  archerPrefab: {fileID: 1832852299734652247}
+  archerAnimator: {fileID: 5259721012462244693}

@@ -99,7 +99,7 @@ public class TowerButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 case TowerButtonType.Upgrade:
                     if (tower.GetTowerLevel() < 2)
                     {
-                        costText.text = "-" + goldValue.ToString();
+                        costText.text = "-" + tower.GetUpgradeCost().ToString();
                     }
                     else
                     {

@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour, IObjectInteractable
     protected int projectileDamage;
     protected float attackCooldown;
     protected float attackTimer;
+    protected int upgradeCost;
 
     [Header("References")]
     [SerializeField] protected GameObject projectilePrefab;
@@ -35,80 +36,46 @@ public class Tower : MonoBehaviour, IObjectInteractable
 
     protected virtual void Update()
     {
-        AttackTimer();
+        AttackLogic();
     }
 
-    protected virtual void AttackTimer()
+    #region Attack Methods
+    protected virtual void AttackLogic()
     {
         attackTimer += Time.deltaTime;
 
-        Collider2D[] objectsFound = Physics2D.OverlapCircleAll(transform.position + rangeOffset, attackRange, whatIsEnemy);
+        if (FindRandomTarget() == null) return;
 
-        List<GameObject> EnemiesInRange = new List<GameObject>();
-
-        if (objectsFound.Length <= 0) return; //if no enemy is in range don't reset the timer yet
+        GameObject TargetSelected = FindRandomTarget();
 
         if (attackTimer >= attackCooldown)
         {
-            foreach (Collider2D obj in objectsFound)
-            {
-                if (obj.gameObject.GetComponent<IDamageable>() != null)
-                {
-                    EnemiesInRange.Add(obj.gameObject);
-                }
-            }
-
-            AttackLogic(EnemiesInRange);  
+            Debug.Log(TargetSelected.name + " enemy targeted. Override method to get functionality for your towers.");
+            attackTimer = 0;
         }
     }
 
-    protected virtual void AttackLogic(List<GameObject> _enemiesInRange)
+    protected virtual GameObject FindRandomTarget()
     {
-        if (_enemiesInRange.Count > 0)
+        Collider2D[] objectsNearby = Physics2D.OverlapCircleAll(transform.position, attackRange, whatIsEnemy);
+
+        if (objectsNearby.Length > 0)
         {
-            int randomIndex = Random.Range(0, _enemiesInRange.Count);
+            int randomIndex = Random.Range(0, objectsNearby.Length);
 
-            GameObject TargetSelected = _enemiesInRange[randomIndex];
-
-            Debug.Log(TargetSelected.name + " enemy targeted");
-
-            GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
-
-            newProjectile.GetComponent<Projectile>().SpawnProjectileData(TargetSelected, projectileDamage, projectileSpeed);
+            return objectsNearby[randomIndex].gameObject;
         }
-
-        attackTimer = 0;
+        else return null;
     }
+    #endregion
 
-    public void ObjectClickedOn()
-    {
-        inGameAttackRange.SetActive(true);
-        //inGameAttackRange.GetComponent<InGameAttackRange>().UpdateScale(attackRange);
-        UICanvas.SetActive(true);
-    }
-
-    public void ObjectClickedOff()
-    {
-        inGameAttackRange.SetActive(false);
-        UICanvas.GetComponentInChildren<Animator>().SetTrigger("despawnButtons");
-    }
-
-    public void ObjectIsBeingHovered() { }
-
-    void OnDrawGizmos()
-    {
-        if (!attackRangeInEditor) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + rangeOffset, towerLevelStats[towerLevel].attackRange);
-    }
-
-    public float GetAttackRange() => attackRange;
-
+    #region Upgrade Methods
     private void UpdateTowerStats()
     {
         attackRange = towerLevelStats[towerLevel].attackRange;
         projectileDamage = towerLevelStats[towerLevel].projectileDamage;
         attackCooldown = towerLevelStats[towerLevel].attackCooldown;
+        upgradeCost = towerLevelStats[towerLevel].upgradeCost;
     }
 
     public void UpgradeTower()
@@ -124,10 +91,40 @@ public class Tower : MonoBehaviour, IObjectInteractable
             Debug.Log("ERROR: This tower is maxed out.");
         }
     }
+    #endregion
 
+    #region Mouse Interfaces
+    public void ObjectClickedOn()
+    {
+        inGameAttackRange.SetActive(true);
+        UICanvas.SetActive(true);
+    }
+
+    public void ObjectClickedOff()
+    {
+        inGameAttackRange.SetActive(false);
+        UICanvas.GetComponentInChildren<Animator>().SetTrigger("despawnButtons");
+    }
+
+    public void ObjectIsBeingHovered() { }
+    #endregion   
+
+    #region Getter and Setters
     public int GetTowerLevel() => towerLevel;
-
+    public float GetAttackRange() => attackRange;
+    public int GetProjectileDamage() => projectileDamage;
+    public int GetUpgradeCost() => upgradeCost;
     public Vector3 GetRangeOffset() => rangeOffset;
+    #endregion
+
+    #region Gizmos
+    private void OnDrawGizmos()
+    {
+        if (!attackRangeInEditor) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + rangeOffset, towerLevelStats[towerLevel].attackRange);
+    }
+    #endregion
 }
 
 
@@ -138,4 +135,5 @@ public class TowerLevelStats
     public float attackRange;
     public int projectileDamage;
     public float attackCooldown;
+    public int upgradeCost;
 }

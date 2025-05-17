@@ -240,9 +240,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -1613578851
+  m_SortingLayer: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e3056dcfc0ee9249a07cba86878b611, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -328,8 +328,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1449154885
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.40494838, g: 0.7848963, b: 0.9433962, a: 0.4}
@@ -429,8 +429,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 106011415
-  m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingLayer: 6
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ba766288f5c52084b8c603a64d80bf62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -698,10 +698,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1302303640138772017}
-  - component: {fileID: 8280975733288098973}
   - component: {fileID: 1893238942641827524}
-  - component: {fileID: 2133236517966384523}
   - component: {fileID: 2434203125377769976}
+  - component: {fileID: 8280975733288098973}
   m_Layer: 0
   m_Name: 'Mages Tower '
   m_TagString: Interactable
@@ -729,41 +728,6 @@ Transform:
   - {fileID: 985303636718808635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8280975733288098973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5822247588967518382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c4e9c3aaad242e40b3011256bdf6a92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerLevelStats:
-  - attackRange: 2.5
-    projectileDamage: 5
-    attackCooldown: 2
-  - attackRange: 3.75
-    projectileDamage: 10
-    attackCooldown: 1.75
-  - attackRange: 5
-    projectileDamage: 15
-    attackCooldown: 1.5
-  towerLevel: 0
-  projectileSpeed: 10
-  projectilePrefab: {fileID: 1878180437719883541, guid: dd5e6edc0b4d5da45b142c1fa7971f88, type: 3}
-  projectileSpawnPoint: {fileID: 2674292993913974725}
-  inGameAttackRange: {fileID: 2322773568063688845}
-  UICanvas: {fileID: 8713646070169794120}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 64
-  rangeOffset: {x: 0.175, y: 0, z: 0}
-  attackRangeInEditor: 1
-  laserDuration: 0.3
-  laserEffect: {fileID: 2733208709433285025}
 --- !u!61 &1893238942641827524
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -810,18 +774,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.6586275, y: 2.4897523}
   m_EdgeRadius: 0
---- !u!210 &2133236517966384523
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5822247588967518382}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_SortAtRoot: 0
 --- !u!120 &2434203125377769976
 LineRenderer:
   serializedVersion: 2
@@ -865,7 +817,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 106011415
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -929,6 +881,44 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8280975733288098973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5822247588967518382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e9c3aaad242e40b3011256bdf6a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLevelStats:
+  - attackRange: 2.5
+    projectileDamage: 5
+    attackCooldown: 2
+    upgradeCost: 25
+  - attackRange: 3.75
+    projectileDamage: 10
+    attackCooldown: 1.75
+    upgradeCost: 50
+  - attackRange: 5
+    projectileDamage: 15
+    attackCooldown: 1.5
+    upgradeCost: 100
+  towerLevel: 0
+  projectileSpeed: 10
+  projectilePrefab: {fileID: 1878180437719883541, guid: dd5e6edc0b4d5da45b142c1fa7971f88, type: 3}
+  projectileSpawnPoint: {fileID: 2674292993913974725}
+  inGameAttackRange: {fileID: 2322773568063688845}
+  UICanvas: {fileID: 8713646070169794120}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 64
+  rangeOffset: {x: 0.175, y: 0, z: 0}
+  attackRangeInEditor: 1
+  laserDuration: 0.3
+  laserEffect: {fileID: 2733208709433285025}
 --- !u!1 &6307938264588746516
 GameObject:
   m_ObjectHideFlags: 0

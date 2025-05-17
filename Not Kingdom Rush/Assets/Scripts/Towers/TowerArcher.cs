@@ -37,8 +37,6 @@ public class TowerArcher : Tower
 
                 archerTarget = TargetSelected;
 
-                Debug.Log(TargetSelected.name + " enemy targeted");
-
                 if (TargetSelected.transform.position.x > archerPrefab.transform.position.x)
                     archerPrefab.transform.localScale = Vector3.one;
                 else

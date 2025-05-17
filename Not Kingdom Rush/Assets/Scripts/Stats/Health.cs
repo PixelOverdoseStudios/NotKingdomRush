@@ -9,7 +9,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private float maxHealth = 100f;
     SmoothFlashEffect smoothFlashEffect;
 
-    private float currentHealth;
+    [SerializeField] private float currentHealth;
     private bool isDead = false;
 
     public event Action OnDeath;

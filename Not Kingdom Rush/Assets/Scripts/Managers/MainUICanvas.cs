@@ -5,7 +5,8 @@ public class MainUICanvas : MonoBehaviour
 {
     public static MainUICanvas instance;
 
-    [SerializeField] private TextMeshProUGUI playersGoldAmount;
+    [SerializeField] private TextMeshProUGUI playersGoldText;
+    [SerializeField] private TextMeshProUGUI castleHealthText;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class MainUICanvas : MonoBehaviour
 
     public void UpdateGoldUI()
     {
-        playersGoldAmount.text = GameManager.instance.GetGold().ToString();
+        playersGoldText.text = GameManager.instance.GetGold().ToString();
+        castleHealthText.text = GameManager.instance.GetCastleHealth().ToString();
     }
 }
