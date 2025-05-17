@@ -143,6 +143,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {   
+        GameManager.instance.AddGold(1);
+
         enemyCurrentState = EnemyStates.Died;
         SetAnimationState("IsDead");
     }
