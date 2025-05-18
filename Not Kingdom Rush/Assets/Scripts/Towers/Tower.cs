@@ -61,9 +61,22 @@ public class Tower : MonoBehaviour, IObjectInteractable
 
         if (objectsNearby.Length > 0)
         {
-            int randomIndex = Random.Range(0, objectsNearby.Length);
+            //int randomIndex = Random.Range(0, objectsNearby.Length);
+            //return objectsNearby[randomIndex].gameObject;
 
-            return objectsNearby[randomIndex].gameObject;
+            float distanceTracker = float.MaxValue;
+            GameObject farthestEnemy = null;
+
+            foreach(Collider2D enemy in objectsNearby)
+            {
+                if(enemy.gameObject.GetComponent<Health>().ReturnDistanceToCheckPoint() < distanceTracker)
+                {
+                    distanceTracker = enemy.gameObject.GetComponent<Health>().ReturnDistanceToCheckPoint();
+                    farthestEnemy = enemy.gameObject;
+                }
+            }
+
+            return farthestEnemy;
         }
         else return null;
     }
