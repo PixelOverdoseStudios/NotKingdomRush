@@ -45,7 +45,7 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            obj = Instantiate(prefabLookup[tag]);
+            obj = Instantiate(prefabLookup[tag], position, rotation);
         }
 
         obj.transform.position = position;

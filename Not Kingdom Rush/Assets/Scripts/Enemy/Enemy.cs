@@ -4,14 +4,16 @@ using System.Diagnostics;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{   
-    public enum EnemyStates{
+{
+    public enum EnemyStates
+    {
         Run,
         Attack,
         Died
     }
     public EnemyStates enemyCurrentState = EnemyStates.Run;
-    private List<Vector3> path;
+    [HideInInspector]
+    public List<Vector3> path;
     private int pathIndex = 0;
 
     public float speed = 2f;
@@ -27,7 +29,7 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1f;
     public int attackDamage = 10;
     public int goldValue = 1;
-    
+
 
     //assigned when attack mode (hero script pass reference to enemy script)
     private IDamageable damageable;
@@ -48,26 +50,27 @@ public class Enemy : MonoBehaviour
         if (path == null || pathIndex >= path.Count)
             return;
 
-        switch (enemyCurrentState){
+        switch (enemyCurrentState)
+        {
             case EnemyStates.Run:
                 Move();
-            break;
+                break;
 
             case EnemyStates.Attack:
                 Attack();
-            break;
+                break;
             case EnemyStates.Died:
 
-            break;
+                break;
         }
 
 
-        
+
     }
 
     //Called when in range of hero attack (hero script calls it)
     public void ChangeToAttackState(IDamageable damageable, Transform damageablePos)
-    {   
+    {
         this.damageablePos = damageablePos;
         this.damageable = damageable;
         enemyCurrentState = EnemyStates.Attack;
@@ -75,7 +78,7 @@ public class Enemy : MonoBehaviour
 
     //Called when no longer attacking hero (hero script calls it)
     public void ChangeToMoveState()
-    {   
+    {
         if (enemyCurrentState != EnemyStates.Died)
         {
             enemyCurrentState = EnemyStates.Run;
@@ -84,16 +87,16 @@ public class Enemy : MonoBehaviour
     }
 
     void Attack()
-    {   
+    {
         Vector2 direction = damageablePos.position - transform.position;
         if (direction.x != 0)
         {
             spriteRenderer.flipX = direction.x < 0;
         }
         if (Time.time - lastAttackTime >= attackRate)
-        {   
+        {
             SetAnimationState("IsAttackingSword");
-            
+
             lastAttackTime = Time.time;
         }
     }
@@ -130,12 +133,12 @@ public class Enemy : MonoBehaviour
             pathIndex++;
 
             if (pathIndex >= path.Count)
-             //Player Loses life here
-                
-                MoveOverCheckpoint(); 
-            }
+                //Player Loses life here
+
+                MoveOverCheckpoint();
         }
-    
+    }
+
 
     void MoveOverCheckpoint()
     {
@@ -144,7 +147,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Die()
-    {   
+    {
         //Set to default so wont be targetted no more
         gameObject.layer = 0;
         GameManager.instance.AddGold(goldValue);
@@ -160,13 +163,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void ResetEnemy()
-    {   
+    {
         health.ResetHealth();
         pathIndex = 0;
     }
 
-    void OnEnable() 
-    {   
+    void OnEnable()
+    {
         //Set to enemy so could be targeted
         gameObject.layer = 6;
 
@@ -191,22 +194,22 @@ public class Enemy : MonoBehaviour
         if (animator == null) return;
 
         // First reset all animation bools to false
-        
+
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsIdling", false);
         animator.SetBool("IsDead", false);
 
         // Then set only the desired bool to true
         switch (boolName)
-        {   
-            case "IsIdling" :
+        {
+            case "IsIdling":
                 animator.SetBool("IsIdling", true);
                 break;
             case "IsAttackingSword":
                 animator.SetTrigger("IsAttackingSword");
                 break;
             case "IsWalking":
-                animator.SetBool("IsWalking", true); 
+                animator.SetBool("IsWalking", true);
                 break;
             case "IsDead":
                 animator.SetBool("IsDead", true);
@@ -214,4 +217,5 @@ public class Enemy : MonoBehaviour
         }
     }
     #endregion
+
 }
