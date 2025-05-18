@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 16458501
-  m_SortingLayer: 4
+  m_SortingLayerID: -1613578851
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 3799508404887519019, guid: 4ee0a341777880448bff8ac686bd31d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!58 &4740840476237713439
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCurrentState: 0
   path: []
-  speed: 2
+  speed: 1
   poolTag: 
   health: {fileID: -4284241904915176176}
   attackRange: 2

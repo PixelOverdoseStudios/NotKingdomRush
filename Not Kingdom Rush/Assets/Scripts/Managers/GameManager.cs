@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
             {
                 castleHealth = 0;
             }
+            MainUICanvas.instance.UpdatePlayerHUD();
         }
     }
     #endregion

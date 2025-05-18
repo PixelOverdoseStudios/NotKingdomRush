@@ -894,17 +894,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerLevelStats:
-  - attackRange: 2.5
+  - attackRange: 2
     projectileDamage: 5
-    attackCooldown: 2
-    upgradeCost: 25
-  - attackRange: 3.75
+    attackCooldown: 2.5
+    upgradeCost: 140
+  - attackRange: 2.75
     projectileDamage: 10
-    attackCooldown: 1.75
-    upgradeCost: 50
-  - attackRange: 5
-    projectileDamage: 15
-    attackCooldown: 1.5
+    attackCooldown: 2.2
+    upgradeCost: 210
+  - attackRange: 3.5
+    projectileDamage: 20
+    attackCooldown: 1.8
     upgradeCost: 100
   towerLevel: 0
   projectileSpeed: 10
