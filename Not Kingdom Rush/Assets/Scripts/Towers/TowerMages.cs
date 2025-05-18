@@ -17,9 +17,9 @@ public class TowerMages : Tower
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    protected override void Update()
+    protected override void AttackLogic()
     {
-        if(lineRenderer.enabled && enemyTargeted != null)
+        if (lineRenderer.enabled && enemyTargeted != null)
         {
             lineRenderer.SetPosition(0, projectileSpawnPoint.position);
             lineRenderer.SetPosition(1, enemyTargeted.transform.position);
@@ -27,43 +27,21 @@ public class TowerMages : Tower
             Vector2 endPoint = lineRenderer.GetPosition(1);
             laserEffect.transform.position = endPoint;
         }
-        
 
-        //base.Update();
         attackTimer += Time.deltaTime;
 
-        Collider2D[] objectsFound = Physics2D.OverlapCircleAll(transform.position, attackRange, whatIsEnemy);
-
-        List<GameObject> EnemiesInRange = new List<GameObject>();
-
-        if (objectsFound.Length <= 0) return;
+        if (FindRandomTarget() == null) return;
 
         if (attackTimer >= attackCooldown)
         {
-            foreach (Collider2D obj in objectsFound)
-            {
-                if (obj.gameObject.GetComponent<IDamageable>() != null)
-                {
-                    EnemiesInRange.Add(obj.gameObject);
-                }
-            }
+            enemyTargeted = FindRandomTarget();
 
-            if (EnemiesInRange.Count > 0)
-            {
-                int randomIndex = Random.Range(0, EnemiesInRange.Count);
+            StartCoroutine(PlayLaserProjectileCo(laserDuration, enemyTargeted));
 
-                GameObject TargetSelected = EnemiesInRange[randomIndex];
-
-                enemyTargeted = TargetSelected;
-
-                StartCoroutine(PlayLaserProjectileCo(laserDuration, TargetSelected));
-
-                TargetSelected.GetComponent<IDamageable>().TakeDamage(projectileDamage);
-            }
+            enemyTargeted.GetComponent<IDamageable>().TakeDamage(projectileDamage);
 
             attackTimer = 0;
         }
-
     }
 
     private IEnumerator PlayLaserProjectileCo(float _laserDuration, GameObject _target)

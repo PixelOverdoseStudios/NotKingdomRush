@@ -82,6 +82,7 @@ public class Tower : MonoBehaviour, IObjectInteractable
     {
         if(towerLevel < 2)
         {
+            GameManager.instance.SubtractGold(upgradeCost);
             towerLevel++;
             UpdateTowerStats();
             inGameAttackRange.GetComponent<InGameAttackRange>().UpdateScale();

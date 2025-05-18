@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gold;
     [SerializeField] private int startingCastleHealth;
     private int castleHealth;
+    private bool isPaused;
 
     private void Awake()
     {
@@ -16,11 +17,21 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        castleHealth = startingCastleHealth;
     }
 
-    private void Start()
+    private void Update()
     {
-        castleHealth = startingCastleHealth;
+        if (isPaused)
+            Time.timeScale = 0f;
+        else
+            Time.timeScale = 1f;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            MainUICanvas.instance.TogglePauseMenu();
+        }
     }
 
     #region Gold Methods
@@ -29,16 +40,17 @@ public class GameManager : MonoBehaviour
     public void AddGold(int goldToAdd)
     {
         gold += goldToAdd;
-        MainUICanvas.instance.UpdateGoldUI();
+        MainUICanvas.instance.UpdatePlayerHUD();
     }
 
     public void SubtractGold(int goldToTake)
     {
         gold -= goldToTake;
-        MainUICanvas.instance.UpdateGoldUI();
+        MainUICanvas.instance.UpdatePlayerHUD();
     }
     #endregion
 
+    #region Castle Health Methods
     public int GetCastleHealth() => castleHealth;
 
     public void CastleTakeDamage(int amount)
@@ -52,4 +64,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    public void PauseGame() => isPaused = true;
+    public void UnpauseGame() => isPaused = false;
 }

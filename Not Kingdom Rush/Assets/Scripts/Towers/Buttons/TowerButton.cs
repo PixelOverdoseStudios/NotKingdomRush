@@ -28,7 +28,7 @@ public class TowerButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void CostOfBuilding()
     {
-        GameManager.instance.SubtractGold(goldValue);
+        GameManager.instance.SubtractGold(tower.GetUpgradeCost());
         RefreshButtonInfo();
     }
 

@@ -34,6 +34,7 @@ public class BombProjectile : MonoBehaviour
         {
             Instantiate(bombExplosion, transform.position, Quaternion.identity);
             DamageNearbyTargets();
+            AudioManager.instance.SFXBombExplosion();
             Destroy(gameObject);
         }
     }
