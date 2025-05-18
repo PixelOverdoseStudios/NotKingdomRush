@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCurrentState: 0
+  path: []
   speed: 2
   poolTag: 
   health: {fileID: -4284241904915176176}
@@ -189,8 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de9f76673c38554c976615c9b64f3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
   currentHealth: 0
+  enemyStats: {fileID: 11400000, guid: 5ac796d7453ebe944a70f8a4a5b7388f, type: 2}
+  distanceToCheckPoint: 0
 --- !u!95 &5016835410291447927
 Animator:
   serializedVersion: 7

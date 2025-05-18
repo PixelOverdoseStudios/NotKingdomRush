@@ -7,11 +7,14 @@ public class Health : MonoBehaviour, IDamageable
 {
 
     [Header("Health Settings")]
-    [SerializeField] private float maxHealth = 100f;
+    private float maxHealth = 100f;
     SmoothFlashEffect smoothFlashEffect;
 
     [SerializeField] private float currentHealth;
     private bool isDead = false;
+
+    [Header("Stat Settings")]
+    public EnemyStats enemyStats;
 
     public event Action OnDeath;
     public event Action<float> OnHealthChanged;
@@ -24,6 +27,8 @@ public class Health : MonoBehaviour, IDamageable
     private void Awake()
     {
         ResetHealth();
+        maxHealth = enemyStats.maxHealth;
+        currentHealth = maxHealth;
         enemy = GetComponent<Enemy>();
     }
 
@@ -84,7 +89,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         if (enemy != null)
         {
-            distanceToCheckPoint = Vector3.Distance(transform.position, enemy.path[enemy.path.Count]);
+            distanceToCheckPoint = Vector3.Distance(transform.position, enemy.path[enemy.path.Count - 1]);
             return distanceToCheckPoint;
         }
         return Mathf.Infinity;
